@@ -9,7 +9,7 @@ const io = require('socket.io')(port);
 const caps = io.of('/caps');
 
 io.on('connection', (socket) => {
-  console.log('connected?', socket.id);
+  console.log('connected to general socket server:', socket.id);
 })
 
 
@@ -25,7 +25,7 @@ caps.on('connection', (socket) => {
     socket.broadcast.emit('pickup', payload);
     // console.log('working?')
   }) 
-  console.log('connected to', socket.id)
+  console.log('connected to caps namespace:', socket.id)
 
   socket.on('in-transit', (payload) => {
     socket.emit('in-transit', payload);
