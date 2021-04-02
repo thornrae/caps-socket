@@ -26,6 +26,17 @@ caps.on('connection', (socket) => {
     // console.log('working?')
   }) 
   console.log('connected to', socket.id)
+
+  socket.on('in-transit', (payload) => {
+    socket.emit('in-transit', payload);
+    console.log('heard in-transit')
+  });
+
+  socket.on('delivered', (payload) => {
+    socket.broadcast.emit('delivered', payload)
+    console.log('heard delivered');
+  })
+  
   
 })
 
